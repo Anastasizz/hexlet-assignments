@@ -3,8 +3,7 @@ package exercise;
 import java.util.List;
 import java.util.Optional;
 
-import jakarta.websocket.server.PathParam;
-import lombok.Getter;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +29,8 @@ public class Application {
 
     // BEGIN
     @GetMapping("/posts")
-    public List<Post> index(@RequestParam(defaultValue = "10") Integer limit, @RequestParam(defaultValue = "1") Integer page) {
+    public List<Post> index(@RequestParam(defaultValue = "10") Integer limit,
+                            @RequestParam(defaultValue = "1") Integer page) {
         var offset = (page - 1) * limit;
         return posts.stream()
                 .skip(offset)
@@ -62,7 +62,7 @@ public class Application {
                 .filter(p -> p.getId().equals(id))
                 .findFirst();
 
-        if(postOpt.isPresent()) {
+        if (postOpt.isPresent()) {
             var post = postOpt.get();
             post.setId(data.getId());
             post.setTitle(data.getTitle());
