@@ -30,8 +30,8 @@ public class Application {
 
         return users.stream()
                 .filter(user -> adminEmails.contains(user.getEmail()))
-                .sorted((u1, u2) -> u1.getName().compareTo(u2.getName()))
                 .map(User::getName)
+                .sorted()
                 .toList();
     }
     // END
